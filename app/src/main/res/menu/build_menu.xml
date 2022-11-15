@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Options menu (kabob) for the build screen.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/build_load"
+        android:title="@string/load"
+        android:enabled="false"
+        />
+    <item
+        android:id="@+id/build_save"
+        android:title="@string/save"
+        android:enabled="false"
+        />
+    <item
+        android:id="@+id/build_settings"
+        android:title="@string/settings"
+        />
+    <item
+        android:id="@+id/build_share"
+        android:title="@string/share"
+        android:enabled="false"
+        />
+    <item
+        android:id="@+id/build_help"
+        android:title="@string/help"
+        android:enabled="false"
+        />
+    <item
+        android:id="@+id/build_about"
+        android:title="@string/about"
+        />
+    <item
+        android:id="@+id/build_exit"
+        android:title="@string/exit"
+        />
+</menu>

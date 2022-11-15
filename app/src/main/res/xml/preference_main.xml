@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    layout for preferences
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Hints at the bottom of the screen -->
+    <PreferenceCategory android:title="@string/prefs_general_category">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_hints_cb_key"
+            android:summaryOff="@string/pref_hints_summary_off"
+            android:summaryOn="@string/pref_hints_summary_on"
+            android:title="@string/pref_hints_title"
+            app:title="@string/pref_hints_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_gameplay_category">
+
+<!--        <ListPreference-->
+<!--            android:key="@string/pref_gameplay_difficulty_key"-->
+<!--            android:title="@string/pref_gameplay_difficulty_title"-->
+<!--            app:defaultValue="1"-->
+<!--            app:useSimpleSummaryProvider="true"-->
+<!--            android:summary="@string/pref_gameplay_difficulty_summary"-->
+<!--            android:entries="@array/pref_gameplay_difficulties_readable"-->
+<!--            android:entryValues="@array/pref_gameplay_difficulties_values"-->
+<!--            />-->
+
+        <ListPreference
+            android:key="@string/pref_gameplay_difficulty_key"
+            android:title="@string/pref_gameplay_difficulty_title"
+            android:defaultValue="1"
+            android:summary="@string/pref_gameplay_difficulty_summary"
+            android:entries="@array/pref_gameplay_difficulties_readable"
+            android:entryValues="@array/pref_gameplay_difficulties_values"
+            />
+
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/prefs_dollar_amounts_category">
+
+<!--        <EditTextPreference-->
+<!--            android:key="@string/pref_dollar_amounts_max_key"-->
+<!--            android:selectAllOnFocus="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:inputType="numberSigned"-->
+<!--            app:defaultValue="5"-->
+<!--            app:useSimpleSummaryProvider="true"-->
+<!--            android:title="@string/pref_dollar_amounts_max_title"-->
+<!--            android:summary="@string/pref_dollar_amounts_max_summary"-->
+<!--            />-->
+        <EditTextPreference
+            android:key="@string/pref_dollar_amounts_max_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="numberSigned"
+            android:defaultValue="5"
+            android:title="@string/pref_dollar_amounts_max_title"
+            android:summary="@string/pref_dollar_amounts_max_summary"
+            />
+
+
+<!--        <EditTextPreference-->
+<!--            android:defaultValue="foo"-->
+<!--            android:key="@string/prefs_max_key"-->
+<!--            android:title="@string/prefs_max_title"-->
+<!--            android:selectAllOnFocus="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:inputType="numberSigned"-->
+<!--            />-->
+<!--        <EditTextPreference-->
+<!--            android:defaultValue="foo2"-->
+<!--            android:key="@string/prefs_min_key"-->
+<!--            android:selectAllOnFocus="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:inputType="numberSigned"-->
+<!--            android:title="@string/prefs_min_title" -->
+<!--            />-->
+
+<!--        <EditTextPreference-->
+<!--            android:defaultValue="Default value"-->
+<!--            android:key="@string/pref_hints_cb_key"-->
+<!--            android:selectAllOnFocus="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:title="Edit text preference" />-->
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Button border for connect highlighting during build mode.
+-->
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+
+    <stroke
+        android:width="3dp"
+        android:color="@color/button_build_border_connect"
+        />
+
+    <solid android:color="@android:color/transparent" />
+
+    <!-- Not really relevant, but important to make sure that the width
+        and height are the same -->
+    <size
+        android:width="40dp"
+        android:height="40dp"/>
+
+</shape>

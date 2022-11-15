@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Use this for the give/take animations.
+-->
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="@android:color/black" />
+
+    <size
+        android:width="8dp"
+        android:height="8dp"/>
+
+</shape>

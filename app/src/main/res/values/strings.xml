@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Biggs\' Dollar Game</string>
+
+    <!-- main modes -->
+    <string name="mode_build">Build</string>
+    <string name="mode_solve">Solve</string>
+
+    <string name="solve_hint">Move $ around to eliminate all debts</string>
+    <string name="build_hint">\u2022Tap playfield to add nodes\n\u2022Drag node to move\n\u2022Tap node to connect\n\u2022Long tap buttons to delete or change $</string>
+    <string name="connect_hint">Tap on another node to complete or remove a connection.</string>
+
+    <!-- main menu items -->
+    <string name="load">load</string>
+    <string name="save">save</string>
+    <string name="settings">settings</string>
+    <string name="share">share</string>
+    <string name="solve">solve</string>
+    <string name="build">build</string>
+    <string name="help">help</string>
+    <string name="about">about</string>
+    <string name="clear">clear</string>
+    <string name="exit">exit</string>
+
+    <!-- prefs -->
+    <string name="prefs_general_category">General</string>
+
+    <string name="pref_hints_cb_key" translatable="false">hints_cb_key</string>
+    <string name="pref_hints_summary_on">Display hints</string>
+    <string name="pref_hints_summary_off">Do not show hints</string>
+    <string name="pref_hints_title">Show hints</string>
+
+    <string name="pref_gameplay_category">Game Play</string>
+    <string name="pref_gameplay_difficulty_key">pref gameplay difficulty key</string>
+    <string name="pref_gameplay_difficulty_title">Difficulty</string>
+    <string name="pref_gameplay_difficulty_summary">\t%s</string>
+
+    <string name="prefs_dollar_amounts_category">Dollar Amounts</string>
+
+    <string name="pref_dollar_amounts_max_key" translatable="false">prefs_max_key</string>
+    <string name="pref_dollar_amounts_max_title">maximum dollar amount</string>
+    <string name="pref_dollar_amounts_max_summary">\t%s</string>
+
+    <string name="pref_dollar_amounts_min_key" translatable="false">prefs_min_key</string>
+    <string name="pref_dollar_amounts_min_title">minumum dollar amount</string>
+    <string name="pref_dollar_amounts_min_summary">\t%s</string>
+
+
+    <string name="genus_label">genus:</string>
+    <string name="not_applicable">n\/a</string>
+    <string name="count_label">count:</string>
+
+    <!-- credits -->
+    <string name="credits_title">Credits &amp; Blame</string>
+    <string name="part1">This program was done by Biggs. You can find him easily enough by searching.</string>
+    <string name="holly">Inspired by a Numberphile <a href="https://www.youtube.com/watch?v=U33dsEcKgeQ">video</a>
+        with Dr. Holly Krieger.  I was surprised no one had made a computer version of that game, so…here it is!
+        </string>
+    <string name="more_info">There\'s way more than you ever wanted to know about the math of this game
+        <a href="https://mattbaker.blog/2013/10/18/riemann-roch-for-graphs-and-applications/">here</a>. </string>
+    <string name="legalese_title">Legalese</string>
+    <string name="legalese_">I worked hard to make sure this game works and has no chance of ever harming anyone.
+        But just in case I missed something, don\'t come running to me—no harm is intended and I\'ll accept no
+        responsibility for such.\n\n
+        But the good news is that your data and privacy are completely safe. No information will ever be
+        recorded, let alone saved, stored, sold, or used in any way outside of this app. I don\'t like it
+        when other companies do it, and I won\'t do it to you.</string>
+    <string name="copyright">Lastly, I made this game, and I jealously guard the
+        copyright. I will find anyone who steals this code or distributes it for profit, and I will
+        find them and tell their mother.\n\n©2020 by Biggs</string>
+
+    <!-- edit dollar amount / delete node dialog -->
+    <string name="dialog_title"> $$ Dollar Amount $$</string>
+    <string name="dialog_desc">Adjust the dollar amount for this node.</string>
+    <string name="dialog_orig_label">previous:</string>
+    <string name="delete_node">delete now!</string>
+    <string name="keep_node">delete</string>
+    <string name="dialog_random">random</string>
+
+    <!-- explanation dialogs -->
+    <string name="count_dialog_title">Count</string>
+    <string name="count_dialog_msg">The sum of the dollar amounts of all the nodes.\n\n
+        If this number is greater than or equal to the genus, then the puzzle is solvable.
+        There are some situations where the puzzle is solvable even though the count is less
+        than the genus—good luck finding them!
+    </string>
+    <string name="genus_dialog_title">Genus</string>
+    <string name="genus_dialog_msg">
+        The genus is the number of holes or loops in the puzzle. As you add more
+        loops the number of connections increase, making the puzzle more difficult
+        to solve.\n\n
+        A good rule of thumb: the puzzle will always be solvable if the count is greater or
+        equal to the genus.\n\n
+        However the opposite is not the case; there are some puzzles
+        that have a count less than the genus but are still solvable. I hope you have fun finding them!
+    </string>
+
+    <!-- other dialogs -->
+    <string name="waiting_dialog_msg">Calculating dollar amounts</string>
+    <string name="waiting_dialog_long_time_msg">Large numbers of nodes (like more than 12) can cause
+        these calculations to take quite a long time.  Please be patient.</string>
+
+    <!-- connected/disconnected strings -->
+    <string name="not_connected">disconnected</string>
+    <string name="connected">connected</string>
+    <string name="connected_toast">All nodes are connected! You may proceed to solving this puzzle.</string>
+    <string name="not_connected_toast">There are nodes that are not connected to the rest. Connect them to make a solvable puzzle.</string>
+
+    <string name="solved_toast">Yay, you\'ve solved this puzzle!</string>
+    <string name="not_solved_toast">Looks like there\'s still some work needed to solve this puzzle.</string>
+
+    <!-- generally useful strings -->
+    <string name="dollar_number">$%d</string>   <!-- shows a dollar sign plus an integer -->
+
+    <!-- main screen ui components -->
+    <string name="random_all_button_text">randomize</string>    <!-- allows users to randomize ALL the nodes at once -->
+
+    <!-- error messages -->
+    <string name="impossible_randomize_settings">The current node configuration and settings make it impossible to produce suitable dollar amounts.</string>
+    <string name="done">done</string>
+    <string name="version_error">error</string> <!-- error when attempting to get version -->
+    <string name="unable_to_generate_random_node_numbers">Unable to generate dollar amounts for the nodes. Try fewer nodes maybe?</string>
+
+</resources>

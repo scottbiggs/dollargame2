@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Constants that need to be accessed by XML code should be put here.
+    And if the java code has an Activity or Service available to it,
+    then it can access these constants too.
+-->
+<resources>
+
+    <!-- WARNING: All these Maximums and Minimums MUST agree with each other!
+        There's no way to enforce this as computations are not allowed here, sigh. -->
+    <integer name="MAX_DOLLAR_AMOUNT">7</integer>
+    <integer name="MIN_DOLLAR_AMOUNT">-7</integer>
+
+    <!-- Used by seekbar which can only work in positive numbers (the min is always 0) -->
+    <integer name="MAX_DOLLAR_AMOUNT_NON_NEGATIVE">10</integer>
+    <!-- Used by seekbar for 0 -->
+    <integer name="MAX_DOLLAR_AMOUNT_NON_NEGATIVE_0">5</integer>
+    <!-- The offset between the actual dollar amount and what the seekbar thinks it is -->
+    <integer name="DOLLAR_AMOUNT_SEEKBAR_OFFSET">@integer/MAX_DOLLAR_AMOUNT_NON_NEGATIVE_0</integer>
+</resources>

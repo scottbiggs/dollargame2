@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- gameplay difficulties -->
+    <string-array name="pref_gameplay_difficulties_readable">
+        <item>very easy</item>
+        <item>easy</item>
+        <item>challenging</item>
+        <item>not always possible</item>
+    </string-array>
+    <string-array name="pref_gameplay_difficulties_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+</resources>
