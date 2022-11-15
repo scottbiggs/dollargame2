@@ -1084,8 +1084,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         mGraph.removeNode(nodeId)
 
         resetAllButtonStateColors()
-        rebuildPlayAreaLines()
         resetConnectedUI()
+        rebuildPlayAreaLines()
 
         if (mGraph.numNodes() == 0) {
             mRandomizeAllButt.isEnabled = false     // turn off if no more buttons
@@ -1196,8 +1196,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
         // remove from graph and play area
         mGraph.removeEdge(startButtonId, endButtonId)
-        mPlayArea.removeLine(startButton.center, endButton.center)
-        mPlayArea.invalidate()
+        rebuildPlayAreaLines()
 
         startButton.setBackgroundColorResource(getButtonStateColor(startButton))
         endButton.setBackgroundColorResource(getButtonStateColor(endButton))

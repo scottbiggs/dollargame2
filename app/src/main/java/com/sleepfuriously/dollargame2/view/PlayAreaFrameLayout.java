@@ -143,11 +143,11 @@ public class PlayAreaFrameLayout extends FrameLayout {
     public void addLine(PointF start, PointF end) {
         Line line = new Line(start, end);
         mLines.add(line);
-//        Log.d(TAG, "addline(), start = " + start + ", end = " + end);
+        Log.d(TAG, "addline(), start = " + start + ", end = " + end);
     }
 
     public void removeLine(PointF start, PointF end) {
-//        Log.d(TAG, "removeLine() begin: start = " + start + ", end = " + end);
+        Log.d(TAG, "removeLine() begin: start = " + start + ", end = " + end);
 
         // find the line...
         for (int i = 0; i < mLines.size(); i++) {
@@ -175,13 +175,14 @@ public class PlayAreaFrameLayout extends FrameLayout {
      * Searches through the list, finding every occurrance of the
      * origPoint, and replaces it with the newPoint.
      *
-     * Assumes that all occurrances of a origPoint ARE IN FACT references
+     * Assumes that all occurrences of a origPoint ARE IN FACT references
      * to the same point.  So if you have a graph with multiple uses
      * of the same point, this will probably fail (but that's a rather
      * rare situation).
      */
     @Deprecated // seems to have problems--needs testing
     public void updateLines(PointF origPoint, PointF newPoint) {
+        Log.d(TAG, "updateLines()");
         for (int i = 0; i < mLines.size(); i++) {
             Line line = mLines.get(i);
             if (line.start.equals(origPoint.x, origPoint.y)) {
