@@ -3,7 +3,6 @@ package com.sleepfuriously.dollargame2
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Point
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
@@ -120,6 +119,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d(TAG, "onCreate()")
 
         // setup?
         if (isStartingFromUser()) {
@@ -191,6 +191,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     }
 
     override fun onTouch(v: View?, playAreaEvent: MotionEvent?): Boolean {
+        Log.d(TAG, "onTouch()")
 
         if (v == null) {
             // something weird happened--abort
@@ -216,6 +217,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
             if (playAreaEvent.action == MotionEvent.ACTION_UP) {
                 // finish the UI action and reset to non-connecting state
                 mConnecting = false
+                Log.d(TAG, "mConnect set to $mConnecting")
 
                 // reset the start button
                 val startButton = mGraph.getNodeData(mStartNodeId)
@@ -245,7 +247,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     private fun setupConnectedWidgets() {
         mConnectedIV = findViewById(R.id.connected_iv)
         mConnectedIV.setOnClickListener {
-            var toastStr : String
+            val toastStr : String
             if (mBuildMode) {
                 val connected = mConnectedIV.tag as Boolean
                 toastStr = if (connected)
@@ -260,6 +262,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
                            else
                                 getString(R.string.not_solved_toast)
             }
+
+            Toast.makeText(this, toastStr, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -315,9 +319,11 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * for the user to start the program from scratch.
      */
     private fun userInitiatedOnCreate() {
+        Log.d(TAG, "userInitiatedOnCreate()")
 
         mBuildMode = true       // start in build mode
         mConnecting = false
+        Log.d(TAG, "mConnect set to $mConnecting")
         setupToolbar()
         setupWidgets()
     }
@@ -329,6 +335,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * and will have a puzzle laid out for him.
      */
     private fun notificationInitiatedOnCreate() {
+        Log.d(TAG, "notificationInitiatedOnCreate()")
+
         mBuildMode = false
         mConnecting = false
         setupToolbar()
@@ -338,6 +346,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "onResume()")
 
         // turn off status and navigation bar (top and bottom)
         fullScreenStickyImmersive()
@@ -350,6 +359,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
+        Log.d(TAG, "onNewIntent()")
         if (isStartingFromUser()) {
             Log.d(TAG, "detected a user initiated start from onNewIntent()--that's weird! aborting.")
             return
@@ -364,6 +374,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * and when they are all ignored.
      */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        Log.d(TAG, "displatchTouchEvent()")
+
         if (mAnimatingGiveTake) {
             return true     // consume all touch events during animation
         }
@@ -510,6 +522,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * Changes the mode of all the buttons (nodes) to build mode (MOVABLE)
      */
     private fun setAllButtonsBuild() {
+        Log.d(TAG, "setAllButtonBuild()")
         mGraph.getAllNodeData().forEach { button ->
             button.mode = MovableNodeButton.Modes.MOVABLE
         }
@@ -519,6 +532,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * Changes the nodes to Solve mode (EXPANDABLE)
      */
     private fun setAllButtonsSolve() {
+        Log.d(TAG, "setAllButtonSolve()")
         mGraph.getAllNodeData().forEach { button ->
             button.mode = MovableNodeButton.Modes.EXPANDABLE
         }
@@ -530,6 +544,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * making a connection.
      */
     private fun setAllButtonsConnecting() {
+        Log.d(TAG, "setAllButtonConnecting()")
         mGraph.getAllNodeData().forEach { button ->
             button.mode = MovableNodeButton.Modes.CLICKS_ONLY
         }
@@ -562,6 +577,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param buildMode     The new mode. True means Build mode; false is Solve.
      */
     private fun setMode(buildMode : Boolean) {
+        Log.d(TAG, "setMode(buildMode = $buildMode")
 
         if (mBuildMode == buildMode) {
             Log.e(TAG, "setMode() is trying to change to the same mode! (mMode = $mBuildMode)")
@@ -586,6 +602,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * Does al the UI for the solve mode
      */
     private fun solveModeUI() {
+        Log.d(TAG, "solveModeUI()")
+
         // only change the switch if NOT checked (in Build mode)
         if (!mMainSwitch.isChecked) {
             mMainSwitch.isChecked = true
@@ -625,6 +643,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * Does all the UI for changing to build mode.
      */
     private fun buildModeUI() {
+        Log.d(TAG, "buildModeUI()")
 
         // only change the switch if it IS checked (in Solve mode)
         if (mMainSwitch.isChecked) {
@@ -734,6 +753,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *                              NOTE: this uses RELATIVE COORDINATES (to the parent)!
      */
     private fun newButton(relativeToParentLoc : PointF) {
+        Log.d(TAG, "newButton( $relativeToParentLoc )")
 
         val button = MovableNodeButton(this)
         button.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -850,6 +870,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *                      (the button that's taking the money).
      */
     private fun startGiveTake(mainButtId : Int, mainButton : MovableNodeButton) {
+        Log.d(TAG, "startGiveTake() - mainButtId = $mainButtId")
 
         // sanity check
         if ((mGiving == false) && (mTaking == false)) {
@@ -965,7 +986,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param mainButton    The button that is the center of the animation.
      */
     private fun giveTakeAnimFinished(animViews : List<ImageView>, mainButton : MovableNodeButton) {
-
         Log.d(TAG, "giveTakeAnimFinished()")
 
         animViews.forEach { dot ->
@@ -1030,6 +1050,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param   button      The node/button in question
      */
     private fun showMoneyDialog(button : MovableNodeButton) {
+        Log.d(TAG, "showMoneyDialog()")
 
         val dialog = NodeEditDialog()
         dialog.setOnNodeEditDialogDoneListener { cancelled, dollarAmount, delete ->
@@ -1051,6 +1072,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
 
     private fun deleteNode(nodeToDelete : MovableNodeButton) {
+        Log.d(TAG, "deleteNode() - nodeToDelete ID = ${nodeToDelete.id}")
 
         val nodeId = mGraph.getNodeId(nodeToDelete)
         if (nodeId == null) {
@@ -1084,6 +1106,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param diffY     Similar for y-axis
      */
     private fun continueMove(button: MovableNodeButton, diffX : Float, diffY : Float) {
+        Log.d(TAG, "continueMove() button ID = ${button.id}, diff = ($diffX, $diffY)")
         // todo: this would be more efficient--make updateLines() method work
 //        PointF diffPoint = new PointF(diffX, diffY);
 //        mPlayArea.updateLines(button.getCenter(), diffPoint);
@@ -1098,6 +1121,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * them according to mGraph.
      */
     private fun rebuildPlayAreaLines() {
+        Log.d(TAG, "rebuildPlayAreaLines()")
+
         mPlayArea.removeAllLines()
 
         mGraph.getAllEdges().forEach { edge ->
@@ -1125,6 +1150,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *                  be highlighted.
      */
     private fun startConnection(button : MovableNodeButton) {
+        Log.d(TAG, "startConnection() - button ID = ${button.id}")
 
         mConnecting = true
         mStartNodeId = button.id
@@ -1147,6 +1173,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param endButtonId   The id of the other button.
      */
     private fun disconnectButtons(startButtonId : Int, endButtonId : Int) {
+        Log.d(TAG, "disconnectButtons() - start Id = $startButtonId, end Id = $endButtonId")
 
         // cannot disconnect yourself!
         if (startButtonId == endButtonId) {
@@ -1197,6 +1224,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * @param endButtonId       Destination button (node)
      */
     private fun connectButtons(startButtonId: Int, endButtonId: Int) {
+        Log.d(TAG, "connectButtons() - start Id = $startButtonId, end Id = $endButtonId")
         // cannot connect to yourself!
         if (startButtonId == endButtonId) {
             Log.v(TAG, "Attempting to connect a button to itself--aborted.");
@@ -1237,6 +1265,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * that it is displaying the correct color.
      */
     private fun resetAllButtonStateColors() {
+        Log.d(TAG, "resetAllButtonStateColors()")
 
         mGraph.getAllNodeIds().forEach { nodeId ->
             val nodeButton = mGraph.getNodeData(nodeId)
@@ -1277,6 +1306,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *  mMainSwitch     Will be enabled/disabled depending on the state of the Graph
      */
     private fun resetConnectedUI() {
+        Log.d(TAG, "resetConnectedUI()")
+
         if (mGraph.isConnected()) {
             mConnectedIV.setImageResource(R.drawable.ic_connected)
             mConnectedIV.tag = true     // indicates that is IS displaying a connected graph
@@ -1301,6 +1332,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      * Does the logic and UI of randomizing the contents of all the nodes.
      */
     private fun randomizeAllNodes() {
+        Log.d(TAG, "randomizeAllNodes()")
 
         val nodeIds = mGraph.getAllNodeIds()
         val numNodes = nodeIds.size
@@ -1419,6 +1451,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *          current user's preference.
      */
     private fun getCurrentDifficulty() : Int {
+        Log.d(TAG, "getCurrentDifficulty()")
+
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val diffKey = getString(R.string.pref_gameplay_difficulty_key)
         val diffVal = prefs.getString(diffKey, null)
@@ -1447,6 +1481,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG, "onActivityResult()")
 
         when (requestCode) {
             PREFS_ACTIVITY_ID -> refreshPrefs()
@@ -1485,6 +1520,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
      *      mHintTV - visibility changes
      */
     private fun refreshPrefs() {
+        Log.d(TAG, "refreshPrefs()")
+
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
         // hints
@@ -1501,7 +1538,6 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         else {
             solveModeUI()
         }
-
     }
 
 
@@ -1518,7 +1554,5 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         /** number of milliseconds for a TAKE animation */
         const val TAKE_MILLIS = 300L
     }
-
-
 
 }
